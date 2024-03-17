@@ -73,6 +73,7 @@ class MainTabBarController: UITabBarController {
     func tabBarItemTemplate(controller: UIViewController, imageName: String) -> UIViewController {
         let controller = controller
         controller.tabBarItem.image = UIImage(named: imageName)?.withRenderingMode(.alwaysOriginal)
+        controller.tabBarItem.selectedImage = UIImage(named: imageName + "Selected")
         return controller
     }
 }
