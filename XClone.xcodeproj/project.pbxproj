@@ -19,6 +19,7 @@
 		B58F9E182BA6E7D6008B5C6E /* CommunityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58F9E172BA6E7D6008B5C6E /* CommunityController.swift */; };
 		B58F9E1A2BA6E7E4008B5C6E /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58F9E192BA6E7E4008B5C6E /* NotificationController.swift */; };
 		B58F9E1C2BA6E7F2008B5C6E /* MessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58F9E1B2BA6E7F2008B5C6E /* MessageController.swift */; };
+		B58F9E1E2BA83D03008B5C6E /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58F9E1D2BA83D03008B5C6E /* FeedCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		B58F9E172BA6E7D6008B5C6E /* CommunityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityController.swift; sourceTree = "<group>"; };
 		B58F9E192BA6E7E4008B5C6E /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		B58F9E1B2BA6E7F2008B5C6E /* MessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageController.swift; sourceTree = "<group>"; };
+		B58F9E1D2BA83D03008B5C6E /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 		B58F9E0D2BA6BC70008B5C6E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B58F9E1D2BA83D03008B5C6E /* FeedCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B58F9DF62BA6BC1E008B5C6E /* AppDelegate.swift in Sources */,
+				B58F9E1E2BA83D03008B5C6E /* FeedCell.swift in Sources */,
 				B58F9E1C2BA6E7F2008B5C6E /* MessageController.swift in Sources */,
 				B58F9E162BA6E799008B5C6E /* SearchController.swift in Sources */,
 				B58F9E1A2BA6E7E4008B5C6E /* NotificationController.swift in Sources */,

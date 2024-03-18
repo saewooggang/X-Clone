@@ -7,7 +7,9 @@
 
 import UIKit
 
-class HomeController: UIViewController {
+private let reuseIdentifier = "FeedCell"
+
+class HomeController: UICollectionViewController {
     
     // MARK: - Properties
     
@@ -23,6 +25,39 @@ class HomeController: UIViewController {
     // MARK: - Helpers
     
     func configureUI() {
-        view.backgroundColor = .systemBackground
+        configureCollectionView()
+    }
+    
+    func configureCollectionView() {
+        collectionView.register(FeedCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+    }
+}
+
+// MARK: - UICollectionViewDatasource / Delegate
+
+extension HomeController {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FeedCell
+        return cell
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+ 
+extension HomeController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.width, height: 140)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 1
     }
 }

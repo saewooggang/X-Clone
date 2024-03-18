@@ -33,10 +33,10 @@ class MainTabBarController: UITabBarController {
         iv.contentMode = .scaleAspectFill
         
         view.addSubview(iv)
-        iv.setDimension(width: 38, height: 38)
+        iv.setDimension(width: 34, height: 34)
         iv.centerX(withView: view)
         iv.centerY(withView: view)
-        iv.layer.cornerRadius = 38 / 2
+        iv.layer.cornerRadius = 34 / 2
         iv.clipsToBounds = true
         
         return view
@@ -66,7 +66,7 @@ class MainTabBarController: UITabBarController {
         configureTabBar()
         
         view.addSubview(actionFloatingButton)
-        actionFloatingButton.anchor(bottom: view.bottomAnchor, right: view.rightAnchor, paddingBottom: tabBar.frame.height + 40, paddingRight: 10)
+        actionFloatingButton.anchor(bottom: view.bottomAnchor, right: view.rightAnchor, paddingBottom: tabBar.frame.height + 46, paddingRight: 10)
         actionFloatingButton.setDimension(width: 56, height: 56)
         actionFloatingButton.layer.cornerRadius = 56 / 2
     }
@@ -80,7 +80,7 @@ class MainTabBarController: UITabBarController {
     func configureTabBar() {
         self.delegate = self
         
-        let home = tabBarItemTemplate(controller: HomeController(), imageName: "Home")
+        let home = tabBarItemTemplate(controller: HomeController(collectionViewLayout: UICollectionViewFlowLayout()), imageName: "Home")
         let search = tabBarItemTemplate(controller: SearchController(), imageName: "Search")
         let community = tabBarItemTemplate(controller: CommunityController(), imageName: "Community")
         let notification = tabBarItemTemplate(controller: NotificationController(), imageName: "Notification")
