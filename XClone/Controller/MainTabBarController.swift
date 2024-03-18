@@ -42,17 +42,34 @@ class MainTabBarController: UITabBarController {
         return view
     }()
     
+    private lazy var actionFloatingButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: "AddPost"), for: .normal)
+        button.backgroundColor = .mainBlue
+        button.clipsToBounds = true
+        return button
+    }()
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNaviagationBar()
-        configureTabBar()
+        configureUI()
     }
     
     // MARK: - Actions
     
     // MARK: - Helpers
+    
+    func configureUI() {
+        configureNaviagationBar()
+        configureTabBar()
+        
+        view.addSubview(actionFloatingButton)
+        actionFloatingButton.anchor(bottom: view.bottomAnchor, right: view.rightAnchor, paddingBottom: tabBar.frame.height + 40, paddingRight: 10)
+        actionFloatingButton.setDimension(width: 56, height: 56)
+        actionFloatingButton.layer.cornerRadius = 56 / 2
+    }
     
     func configureNaviagationBar() {
         navigationItem.titleView = logoImageView
@@ -61,6 +78,8 @@ class MainTabBarController: UITabBarController {
     }
     
     func configureTabBar() {
+        self.delegate = self
+        
         let home = tabBarItemTemplate(controller: HomeController(), imageName: "Home")
         let search = tabBarItemTemplate(controller: SearchController(), imageName: "Search")
         let community = tabBarItemTemplate(controller: CommunityController(), imageName: "Community")
@@ -75,5 +94,17 @@ class MainTabBarController: UITabBarController {
         controller.tabBarItem.image = UIImage(named: imageName)?.withRenderingMode(.alwaysOriginal)
         controller.tabBarItem.selectedImage = UIImage(named: imageName + "Selected")
         return controller
+    }
+}
+
+extension MainTabBarController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        let index = tabBarController.selectedIndex
+        
+        if index == 4 {
+            self.actionFloatingButton.setImage(UIImage(named: "AddMessage"), for: .normal)
+        } else {
+            self.actionFloatingButton.setImage(UIImage(named: "AddPost"), for: .normal)
+        }
     }
 }
