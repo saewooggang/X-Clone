@@ -42,7 +42,7 @@ class MainTabBarController: UITabBarController {
         return view
     }()
     
-    private lazy var actionFloatingButton: UIButton = {
+    lazy var actionFloatingButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: "AddPost"), for: .normal)
         button.backgroundColor = .mainBlue
@@ -101,14 +101,23 @@ extension MainTabBarController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         let index = tabBarController.selectedIndex
         
-        if index == 4 {
-            self.actionFloatingButton.setImage(UIImage(named: "AddMessage"), for: .normal)
-        } else {
-            self.actionFloatingButton.setImage(UIImage(named: "AddPost"), for: .normal)
-        }
-        
         if index != 1 {
             self.navigationItem.titleView = logoImageView
+        }
+        
+        switch index {
+        case 2:
+            self.navigationItem.titleView = nil
+            self.navigationItem.title = "커뮤니티"
+        case 3:
+            self.navigationItem.titleView = nil
+            self.navigationItem.title = "알림"
+        case 4:
+            self.navigationItem.titleView = nil
+            self.navigationItem.title = "쪽지"
+            self.actionFloatingButton.setImage(UIImage(named: "AddMessage"), for: .normal)
+        default:
+            break
         }
     }
 }

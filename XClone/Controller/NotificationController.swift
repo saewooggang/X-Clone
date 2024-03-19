@@ -7,7 +7,9 @@
 
 import UIKit
 
-class NotificationController: UIViewController {
+private let reuseIdentifier = "NotificationCell"
+
+class NotificationController: UITableViewController {
     
     // MARK: - Properties
     
@@ -16,6 +18,7 @@ class NotificationController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        configureTableView()
     }
     
     // MARK: - Actions
@@ -23,6 +26,24 @@ class NotificationController: UIViewController {
     // MARK: - Helpers
     
     func configureUI() {
-        view.backgroundColor = .orange
+        view.backgroundColor = .systemBackground
+    }
+    
+    func configureTableView() {
+        tableView.register(NotificationCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.rowHeight = 80
+    }
+}
+
+// MARK: - UITableViewDatasource / Delegate
+
+extension NotificationController {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! NotificationCell
+        return cell
     }
 }

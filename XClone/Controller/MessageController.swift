@@ -18,6 +18,12 @@ class MessageController: UIViewController {
         configureUI()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        guard let mainTabBarController = UIApplication.shared.firstKeyWindow?.rootViewController?.children.first
+                as? MainTabBarController else { return }
+        mainTabBarController.actionFloatingButton.setImage(UIImage(named: "AddPost"), for: .normal)
+    }
+    
     // MARK: - Actions
     
     // MARK: - Helpers
