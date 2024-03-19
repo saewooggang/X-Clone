@@ -72,3 +72,13 @@ extension UIColor {
     
     static let mainBlue = rgb(red: 74, green: 153, blue: 234)
 }
+
+extension UIApplication {
+    var firstKeyWindow: UIWindow? { // It's available in iOS 15 +
+        return UIApplication.shared.connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .filter { $0.activationState == .foregroundActive }
+            .first?.keyWindow
+
+    }
+}

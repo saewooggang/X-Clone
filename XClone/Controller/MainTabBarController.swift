@@ -81,7 +81,7 @@ class MainTabBarController: UITabBarController {
         self.delegate = self
         
         let home = tabBarItemTemplate(controller: HomeController(collectionViewLayout: UICollectionViewFlowLayout()), imageName: "Home")
-        let search = tabBarItemTemplate(controller: SearchController(), imageName: "Search")
+        let search = tabBarItemTemplate(controller: ExploreController(), imageName: "Search")
         let community = tabBarItemTemplate(controller: CommunityController(), imageName: "Community")
         let notification = tabBarItemTemplate(controller: NotificationController(), imageName: "Notification")
         let message = tabBarItemTemplate(controller: MessageController(), imageName: "Message")
@@ -105,6 +105,10 @@ extension MainTabBarController: UITabBarControllerDelegate {
             self.actionFloatingButton.setImage(UIImage(named: "AddMessage"), for: .normal)
         } else {
             self.actionFloatingButton.setImage(UIImage(named: "AddPost"), for: .normal)
+        }
+        
+        if index != 1 {
+            self.navigationItem.titleView = logoImageView
         }
     }
 }
