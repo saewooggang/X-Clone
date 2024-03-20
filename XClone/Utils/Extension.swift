@@ -71,6 +71,7 @@ extension UIColor {
     }
     
     static let mainBlue = rgb(red: 74, green: 153, blue: 234)
+    static let navyGray = rgb(red: 113, green: 126, blue: 138)
 }
 
 extension UIApplication {

@@ -45,6 +45,7 @@ class MainTabBarController: UITabBarController {
     lazy var actionFloatingButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: "AddPost"), for: .normal)
+        button.tintColor = .white
         button.backgroundColor = .mainBlue
         button.clipsToBounds = true
         return button
@@ -115,7 +116,7 @@ extension MainTabBarController: UITabBarControllerDelegate {
         case 4:
             self.navigationItem.titleView = nil
             self.navigationItem.title = "쪽지"
-            self.actionFloatingButton.setImage(UIImage(named: "AddMessage"), for: .normal)
+            self.actionFloatingButton.setImage(UIImage(named: "AddMessage")?.withRenderingMode(.alwaysTemplate), for: .normal)
         default:
             break
         }

@@ -22,6 +22,7 @@
 		B58F9E1E2BA83D03008B5C6E /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58F9E1D2BA83D03008B5C6E /* FeedCell.swift */; };
 		B58F9E222BA9880C008B5C6E /* ExploreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58F9E212BA9880C008B5C6E /* ExploreCell.swift */; };
 		B58F9E242BA9B07B008B5C6E /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58F9E232BA9B07B008B5C6E /* NotificationCell.swift */; };
+		B58F9E282BAAF0FC008B5C6E /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58F9E272BAAF0FC008B5C6E /* MessageCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		B58F9E1D2BA83D03008B5C6E /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		B58F9E212BA9880C008B5C6E /* ExploreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCell.swift; sourceTree = "<group>"; };
 		B58F9E232BA9B07B008B5C6E /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		B58F9E272BAAF0FC008B5C6E /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 				B58F9E1D2BA83D03008B5C6E /* FeedCell.swift */,
 				B58F9E212BA9880C008B5C6E /* ExploreCell.swift */,
 				B58F9E232BA9B07B008B5C6E /* NotificationCell.swift */,
+				B58F9E272BAAF0FC008B5C6E /* MessageCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 				B58F9DF62BA6BC1E008B5C6E /* AppDelegate.swift in Sources */,
 				B58F9E1E2BA83D03008B5C6E /* FeedCell.swift in Sources */,
 				B58F9E1C2BA6E7F2008B5C6E /* MessageController.swift in Sources */,
+				B58F9E282BAAF0FC008B5C6E /* MessageCell.swift in Sources */,
 				B58F9E242BA9B07B008B5C6E /* NotificationCell.swift in Sources */,
 				B58F9E162BA6E799008B5C6E /* ExploreController.swift in Sources */,
 				B58F9E1A2BA6E7E4008B5C6E /* NotificationController.swift in Sources */,
