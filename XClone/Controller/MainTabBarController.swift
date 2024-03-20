@@ -82,7 +82,7 @@ class MainTabBarController: UITabBarController {
         
         let home = tabBarItemTemplate(controller: HomeController(collectionViewLayout: UICollectionViewFlowLayout()), imageName: "Home")
         let search = tabBarItemTemplate(controller: ExploreController(), imageName: "Search")
-        let community = tabBarItemTemplate(controller: CommunityController(), imageName: "Community")
+        let community = tabBarItemTemplate(controller: CommunityController(collectionViewLayout: UICollectionViewFlowLayout()), imageName: "Community")
         let notification = tabBarItemTemplate(controller: NotificationController(), imageName: "Notification")
         let message = tabBarItemTemplate(controller: MessageController(), imageName: "Message")
         

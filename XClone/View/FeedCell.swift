@@ -7,9 +7,18 @@
 
 import UIKit
 
+enum FeedCellConfigration {
+    case post
+    case community
+}
+
 class FeedCell: UICollectionViewCell {
     
     // MARK: - Properties
+    
+    var config: FeedCellConfigration? {
+        didSet { configureUI() }
+    }
     
     private let profileImageView: UIView = {
         let view = UIView()
@@ -31,7 +40,7 @@ class FeedCell: UICollectionViewCell {
     private let infoLabel: UILabel = {
         let label = UILabel()
         
-        var attributedString = NSMutableAttributedString(string: "Hyeonsik Jin ", attributes: [.font: UIFont.boldSystemFont(ofSize: 14)])
+        var attributedString = NSMutableAttributedString(string: "Hyeonsik Jin ", attributes: [.font: UIFont.systemFont(ofSize: 14, weight: .bold)])
         attributedString.append(NSAttributedString(string: "@hyeonsik∙2분", attributes: [.font: UIFont.systemFont(ofSize: 14), .foregroundColor: UIColor.lightGray]))
         label.attributedText = attributedString
         
@@ -71,6 +80,24 @@ class FeedCell: UICollectionViewCell {
         return feedButton("Views")
     }()
     
+    private let communityNameLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 13, weight: .bold)
+        label.textColor = .systemGray
+        label.text = "[공식] 테슬라 주주 커뮤니티"
+        return label
+    }()
+    
+    private let communityImageView: UIImageView = {
+        let iv = UIImageView()
+        let image = UIImage(named: "CommunitySelected")?.withRenderingMode(.alwaysTemplate)
+        iv.image = image
+        iv.tintColor = .systemGray
+        iv.setDimension(width: 16, height: 16)
+        iv.contentMode = .scaleAspectFit
+        return iv
+    }()
+    
     private let separatorView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemGray5
@@ -88,7 +115,6 @@ class FeedCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configureUI()
     }
     
     required init?(coder: NSCoder) {
@@ -98,9 +124,17 @@ class FeedCell: UICollectionViewCell {
     // MARK: - Helpers
     
     func configureUI() {
+        if config == .community {
+            addSubview(communityNameLabel)
+            communityNameLabel.anchor(top: topAnchor, left: leftAnchor, paddingTop: 5, paddingLeft: 62)
+            
+            addSubview(communityImageView)
+            communityImageView.anchor(top: communityNameLabel.topAnchor, right: communityNameLabel.leftAnchor, paddingRight: 2)
+        }
+        
         addSubview(profileImageView)
         profileImageView.setDimension(width: 48, height: 48)
-        profileImageView.anchor(top: topAnchor, left: leftAnchor, paddingTop: 10, paddingLeft: 10)
+        profileImageView.anchor(top: config == .post ? topAnchor : communityNameLabel.bottomAnchor, left: leftAnchor, paddingTop: config == .post ? 10 : 2, paddingLeft: 10)
         
         addSubview(infoLabel)
         infoLabel.anchor(top: profileImageView.topAnchor, left: profileImageView.rightAnchor, paddingLeft: 5)
@@ -110,7 +144,7 @@ class FeedCell: UICollectionViewCell {
         moreButton.anchor(top: profileImageView.topAnchor, right: rightAnchor, paddingRight: 10)
         
         addSubview(contentLabel)
-        contentLabel.anchor(top: infoLabel.bottomAnchor, left: infoLabel.leftAnchor, right: rightAnchor, paddingTop: 5, paddingBottom: 5, paddingRight: 5)
+        contentLabel.anchor(top: infoLabel.bottomAnchor, left: infoLabel.leftAnchor, right: rightAnchor, paddingTop: 3, paddingBottom: 5, paddingRight: 5)
         
         addSubview(separatorView)
         separatorView.anchor(left: leftAnchor, bottom: bottomAnchor, right: rightAnchor)
