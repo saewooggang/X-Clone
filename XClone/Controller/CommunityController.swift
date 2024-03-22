@@ -7,7 +7,7 @@
 
 import UIKit
 
-private let reuseIdentifier = "FeedCell"
+private let reuseIdentifier = "PostCell"
 
 class CommunityController: UICollectionViewController {
     
@@ -30,7 +30,7 @@ class CommunityController: UICollectionViewController {
     }
     
     func configureCollectionView() {
-        collectionView.register(FeedCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView.register(PostCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
 }
 
@@ -42,7 +42,7 @@ extension CommunityController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FeedCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PostCell
         cell.config = .community
         return cell
     }

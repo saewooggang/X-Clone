@@ -7,7 +7,7 @@
 
 import UIKit
 
-private let reuseIdentifier = "FeedCell"
+private let reuseIdentifier = "PostCell"
 
 class HomeController: UICollectionViewController {
     
@@ -29,7 +29,7 @@ class HomeController: UICollectionViewController {
     }
     
     func configureCollectionView() {
-        collectionView.register(FeedCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView.register(PostCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
 }
 
@@ -41,7 +41,8 @@ extension HomeController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FeedCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PostCell
+        cell.delegate = self
         cell.config = .post
         return cell
     }
@@ -60,5 +61,14 @@ extension HomeController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 1
+    }
+}
+
+// MARK: - PostCellDelegate
+
+extension HomeController: PostCellDelegate {
+    func feedCellDidTapProfileImage(_ cell: PostCell) {
+        let controller = ProfileController(collectionViewLayout: UICollectionViewFlowLayout())
+        navigationController?.pushViewController(controller, animated: true)
     }
 }

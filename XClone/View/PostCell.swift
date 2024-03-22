@@ -1,5 +1,5 @@
 //
-//  FeedCell.swift
+//  PostCell.swift
 //  XClone
 //
 //  Created by 진현식 on 3/18/24.
@@ -7,34 +7,37 @@
 
 import UIKit
 
-enum FeedCellConfigration {
+protocol PostCellDelegate: AnyObject {
+    func feedCellDidTapProfileImage(_ cell: PostCell)
+}
+
+enum PostCellConfigration {
     case post
     case community
 }
 
-class FeedCell: UICollectionViewCell {
+class PostCell: UICollectionViewCell {
     
     // MARK: - Properties
     
-    var config: FeedCellConfigration? {
+    weak var delegate: PostCellDelegate?
+    
+    var config: PostCellConfigration? {
         didSet { configureUI() }
     }
     
-    private let profileImageView: UIView = {
-        let view = UIView()
-        
+    private lazy var profileImageView: UIImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: "DefaultProfileImage")
-        iv.contentMode = .scaleAspectFill
-        
-        view.addSubview(iv)
-        iv.setDimension(width: 48, height: 48)
-        iv.centerX(withView: view)
-        iv.centerY(withView: view)
-        iv.layer.cornerRadius = 48 / 2
+        let image = UIImage(named: "DefaultProfileImage")
+        iv.image = image
+        iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
         
-        return view
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleProfileImageTapped))
+        iv.isUserInteractionEnabled = true
+        iv.addGestureRecognizer(tap)
+        
+        return iv
     }()
     
     private let infoLabel: UILabel = {
@@ -111,6 +114,10 @@ class FeedCell: UICollectionViewCell {
         print(#function)
     }
     
+    @objc func handleProfileImageTapped() {
+        delegate?.feedCellDidTapProfileImage(self)
+    }
+    
     // MARK: - Lifecycle
     
     override init(frame: CGRect) {
@@ -134,6 +141,7 @@ class FeedCell: UICollectionViewCell {
         
         addSubview(profileImageView)
         profileImageView.setDimension(width: 48, height: 48)
+        profileImageView.layer.cornerRadius = 48 / 2
         profileImageView.anchor(top: config == .post ? topAnchor : communityNameLabel.bottomAnchor, left: leftAnchor, paddingTop: config == .post ? 10 : 2, paddingLeft: 10)
         
         addSubview(infoLabel)
