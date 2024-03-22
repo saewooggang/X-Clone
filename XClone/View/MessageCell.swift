@@ -11,21 +11,12 @@ class MessageCell: UITableViewCell {
     
     // MARK: - Properties
 
-    private let profileImageView: UIView = {
-        let view = UIView()
-        
+    private let profileImageView: UIImageView = {
         let iv = UIImageView()
         iv.image = UIImage(named: "DefaultProfileImage")
         iv.contentMode = .scaleAspectFill
-        
-        view.addSubview(iv)
-        iv.setDimension(width: 52, height: 52)
-        iv.centerX(withView: view)
-        iv.centerY(withView: view)
-        iv.layer.cornerRadius = 52 / 2
         iv.clipsToBounds = true
-        
-        return view
+        return iv
     }()
     
     private let userInfoLabel: UILabel = {
@@ -63,7 +54,10 @@ class MessageCell: UITableViewCell {
     
     func configureUI() {
         addSubview(profileImageView)
-        profileImageView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, paddingTop: 10, paddingLeft: 10, paddingBottom: 10)
+        profileImageView.setDimension(width: 52, height: 52)
+        profileImageView.layer.cornerRadius = 52 / 2
+        profileImageView.anchor(left: leftAnchor, paddingLeft: 10)
+        profileImageView.centerY(withView: self)
         
         let stack = UIStackView(arrangedSubviews: [userInfoLabel, contentLabel])
         stack.axis = .vertical
@@ -71,6 +65,6 @@ class MessageCell: UITableViewCell {
         stack.spacing = 1
         
         addSubview(stack)
-        stack.anchor(top: profileImageView.topAnchor, left: profileImageView.rightAnchor, paddingLeft: 5)
+        stack.anchor(top: profileImageView.topAnchor, left: profileImageView.rightAnchor, paddingLeft: 6)
     }
 }

@@ -25,21 +25,17 @@ class MainTabBarController: UITabBarController {
         return view
     }()
     
-    private let profileImageView: UIView = {
-        let view = UIView()
-        
+    private lazy var profileImageView: UIImageView = {
         let iv = UIImageView()
         iv.image = UIImage(named: "DefaultProfileImage")
         iv.contentMode = .scaleAspectFill
-        
-        view.addSubview(iv)
-        iv.setDimension(width: 34, height: 34)
-        iv.centerX(withView: view)
-        iv.centerY(withView: view)
-        iv.layer.cornerRadius = 34 / 2
         iv.clipsToBounds = true
         
-        return view
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleProfileImageTapped))
+        iv.isUserInteractionEnabled = true
+        iv.addGestureRecognizer(tap)
+        
+        return iv
     }()
     
     lazy var actionFloatingButton: UIButton = {
@@ -48,6 +44,9 @@ class MainTabBarController: UITabBarController {
         button.tintColor = .white
         button.backgroundColor = .mainBlue
         button.clipsToBounds = true
+        
+        button.addTarget(self, action: #selector(handleFloatingButtonTapped), for: .touchUpInside)
+        
         return button
     }()
     
@@ -58,7 +57,19 @@ class MainTabBarController: UITabBarController {
         configureUI()
     }
     
-    // MARK: - Actions
+    // MARK: - Action
+    
+    @objc func handleProfileImageTapped() {
+        let controller = ProfileController(collectionViewLayout: UICollectionViewFlowLayout())
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    @objc func handleFloatingButtonTapped() {
+        let controller = PostUploadController()
+        let nav = UINavigationController(rootViewController: controller)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true)
+    }
     
     // MARK: - Helpers
     
@@ -74,7 +85,13 @@ class MainTabBarController: UITabBarController {
     
     func configureNaviagationBar() {
         navigationItem.titleView = logoImageView
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: profileImageView)
+        
+        profileImageView.setDimension(width: 34, height: 34)
+        profileImageView.layer.cornerRadius = 34 / 2
+        
+        let leftBarButtonItem = UIBarButtonItem(customView: profileImageView)
+        
+        navigationItem.leftBarButtonItem = leftBarButtonItem
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Settings")?.withRenderingMode(.alwaysOriginal), style: .plain, target: nil, action: nil)
     }
     
